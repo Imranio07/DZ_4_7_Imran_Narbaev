@@ -21,6 +21,10 @@ function App() {
         <Route path="Slider" element={<Slider />} />
         <Route path="Home" element={<Home />} />
       </Routes>
+      {/* Добавляем "hello" ниже */}
+      <div>
+        hello
+      </div>
     </BrowserRouter>
   );
 }
