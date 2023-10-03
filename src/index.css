@@ -1,0 +1,132 @@
+/* index.css */
+
+/* Стили для основной страницы */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Стили для заголовка */
+h1 {
+  text-align: center;
+  margin: 1em 0;
+  color: #333;
+}
+
+/* Стили для формы добавления постов */
+form {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1em;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form h2 {
+  text-align: center;
+}
+
+.input-container {
+  margin-bottom: 1em;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+  height: 150px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.5em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+  background-color: #0056b3;
+}
+
+/* Стили для контейнера постов */
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.posts-container h2 {
+  text-align: center;
+  margin-top: 0;
+  grid-column: 1/-1;
+}
+
+/* Стили для карточки поста */
+.post-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.post-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-title {
+  margin-top: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.post-body {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.btn-delete {
+  position: absolute;
+  bottom: 10px;
+  left: 30%;
+  right: 30%;
+  font-size: 16px;
+  margin: auto;
+  display: block;
+  border: none;
+  background-color: #dc3545;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+  background-color: #bb2124;
+}
