@@ -1,114 +1,48 @@
-import React, { useState, useEffect } from "react";
-import AddPost from "./components/addPost";
-import Post from "./components/post";
+import React, { useState } from "react";
+import "./index.css";
 
-function Slider() {
-  const [posts, setPosts] = useState([]);
+const images = [
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu7PJmLi6nlUn6MGp3fRPG0mAZ5vOTA3Gqdg&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYFwc75tpi65bg6eHWpWOlmZ2HSbFxE9DSfw&usqp=CAU",
+  "data:image/jpeg;base64,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",
+];
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      const data = await response.json();
-      setPosts(data);
-    } catch (error) {
-      console.error("Ошибка при загрузке постов:", error);
-    }
+const Slider = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handlePrevious = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1
+    );
   };
 
-  const addPost = async ({ title, body, catImage }) => {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            title,
-            body,
-            userId: 1,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
-      const data = await response.json();
 
-      setPosts((prevPosts) => [
-        {
-          id: data.id,
-          title,
-          body,
-          catImage,
-        },
-        ...prevPosts,
-      ]);
-    } catch (error) {
-      console.error("Ошибка при добавлении поста:", error);
-    }
-  };
 
-  const editPost = async (id, title, body) => {
-    try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${id}`,
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            id,
-            title,
-            body,
-            userId: 1,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
 
-      if (response.status === 200) {
-        setPosts((prevPosts) =>
-          prevPosts.map((post) =>
-            post.id === id ? { ...post, title, body } : post
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Ошибка при редактировании поста:", error);
-    }
-  };
 
-  const deletePost = async (id) => {
-    try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
 
-      if (response.status === 200) {
-        setPosts((prevPosts) =>
-          prevPosts.filter((post) => post.id !== id)
-        );
-      }
-    } catch (error) {
-      console.error("Ошибка при удалении поста:", error);
-    }
+  const handleNext = () => {
+    setCurrentImageIndex(
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1
+    );
   };
 
   return (
-    <div>
-      <h1>Cats Blog</h1>
-      <AddPost addPost={addPost} />
-
+    <div className="slider">
+      <button onClick={handlePrevious} className="prev-button">
+        &lt; Previous
+      </button>
+      <img
+        src={images[currentImageIndex]}
+        alt={`Image ${currentImageIndex + 1}`}
+        className="slide-image"
+      />
+      <button onClick={handleNext} className="next-button">
+        Next &gt;
+      </button>
     </div>
   );
-}
+};
 
 export default Slider;
